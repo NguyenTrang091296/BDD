@@ -1,8 +1,31 @@
-const { I } = inject();
+const { I, ProductSteps} = inject();
 // Add in your custom step files
 
 Given('I have a defined step', () => {
   // TODO: replace with your own step
+});
+
+Given('I login on admin page with ${string} and ${string}',(userName, password) =>
+{
+    ProductSteps.loginAdmin(userName, password);
+});
+
+When('I create category name ${string} and product with', (category, table) => {
+
+    const cells = table.rows[1].cells;
+
+        const nameProduct   = cells[0].value;
+        const priceProduct  = cells[1].value;
+        const numberProduct = cells[2].value;
+
+        products = {
+            name : nameProduct,
+            price: priceProduct,
+            number: numberProduct
+        }
+
+        ProductSteps.createProduct(products, category);
+
 });
 
 // you can provide RegEx to match corresponding steps

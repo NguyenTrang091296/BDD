@@ -18,3 +18,10 @@ Feature: checkout process
       | redCOOKIE    | Events and Forms   | 24,00  |
       | redITEM      | CCK and e-Commerce | 48,00  |
       | redBAKERY    | Templates          | 50,00  |
+
+  Scenario: Create product
+    Given I login on admin page with $"admin" and $"admin"
+    When  I create category name $"Events and Forms" and product with
+      | productName     | productPrice | productNumber|
+      | Product demo    |  50          | 80           |
+

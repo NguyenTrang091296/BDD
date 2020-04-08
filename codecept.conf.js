@@ -8,7 +8,9 @@ exports.config = {
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    ProductPage: "./pages/ProductPage.js",
+    ProductSteps: "./steps/ProductSteps.js",
   },
   mocha: {},
   bootstrap: null,
@@ -27,5 +29,8 @@ exports.config = {
     }
   },
   tests: './*_test.js',
-  name: 'BDD'
+  name: 'BDD',
+  "compilerOptions": {
+    "allowJs": true
+  }
 }

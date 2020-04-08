@@ -1,4 +1,4 @@
-const { I, ProductSteps} = inject();
+const { I, ProductSteps, FrontEndPage} = inject();
 // Add in your custom step files
 
 Given('I have a defined step', () => {
@@ -29,20 +29,20 @@ When('I create category name ${string} and product with', (category, table) => {
 });
 
 // you can provide RegEx to match corresponding steps
-Given('I have product name ${string}', (nameProduct) => {
-    I.amOnPage('/index.php/product');
-    I.seeElement("//a[contains(text(),'Events and Forms')]");
-    I.click("//a[contains(text(),'Events and Forms')]");
-    I.seeElement("//a[contains(text(),'" + nameProduct + "')]");
-    I.click("//a[contains(text(),'" + nameProduct + "')]");
-    I.seeElement("//span[contains(text(),'Add to cart')]");
-    I.click("//span[contains(text(),'Add to cart')]");
-    I.see("Product has been added to your cart.");
+Given('I have category name ${string} and product name ${string}', (nameCategory, nameProduct) => {
+    I.amOnPage(FrontEndPage.urlProductFrontEndPage);
+    I.seeElement(FrontEndPage.returnLink(nameCategory));
+    I.click(FrontEndPage.returnLink(nameCategory));
+    I.seeElement(FrontEndPage.returnLink(nameProduct));
+    I.click(FrontEndPage.returnLink(nameProduct));
+    I.seeElement(FrontEndPage.buttonAddToCart);
+    I.click(FrontEndPage.buttonAddToCart);
+    I.see(FrontEndPage.messageAddToCartSuccess);
 });
 
 // or a simple string
 When('I go to checkout process', () => {
-    I.amOnPage('/index.php/cart');
+    I.amOnPage(FrontEndPage.urlCartPage);
 });
 
 // parameters are passed in via Cucumber expressions
@@ -70,15 +70,15 @@ Given('I add to cart some products', (table) => { // eslint-disable-line
         const category = cells[1].value;
         const price = cells[2].value;
 
-        I.amOnPage('/index.php/product');
-        I.seeElement("//a[contains(text(),'" + category + "')]");
-        I.click("//a[contains(text(),'"+ category + "')]");
-        I.seeElement("//a[contains(text(),'" + name + "')]");
-        I.click("//a[contains(text(),'" + name + "')]");
+        I.amOnPage(FrontEndPage.urlProductFrontEndPage);
+        I.seeElement(FrontEndPage.returnLink(category));
+        I.click(FrontEndPage.returnLink(category));
+        I.seeElement(FrontEndPage.returnLink(name));
+        I.click(FrontEndPage.returnLink(name));
         I.see(price);
-        I.seeElement("//span[contains(text(),'Add to cart')]");
-        I.click("//span[contains(text(),'Add to cart')]");
-        I.see("Product has been added to your cart.");
+        I.seeElement(FrontEndPage.buttonAddToCart);
+        I.click(FrontEndPage.buttonAddToCart);
+        I.see(FrontEndPage.messageAddToCartSuccess);
     }
 });
 
@@ -96,7 +96,7 @@ Then('I check some products in cart', (table) => { // eslint-disable-line
         const name = cells[0].value;
         const price = cells[2].value;
 
-        I.seeElement("//a[contains(text(),'" + name + "')]");
+        I.seeElement(FrontEndPage.returnLink(name));
         I.see(price);
     }
 });

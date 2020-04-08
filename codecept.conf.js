@@ -11,6 +11,7 @@ exports.config = {
     I: './steps_file.js',
     ProductPage: "./pages/ProductPage.js",
     ProductSteps: "./steps/ProductSteps.js",
+    FrontEndPage: "./pages/FrontEndPage.js",
   },
   mocha: {},
   bootstrap: null,

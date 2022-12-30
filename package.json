@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/NguyenTrang091296/BDD#readme",
   "devDependencies": {
-    "codeceptjs": "^2.6.1",
+    "codeceptjs": "^3.0.0",
     "puppeteer": "^2.1.1"
   }
 }
